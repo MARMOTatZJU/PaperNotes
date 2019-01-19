@@ -1,31 +1,3 @@
-# Fully-Convlutional Siamese Networks for Object Tracking
-SiamFC
-## Keypoints
-* Similarity Learning via ConvNet
-* Offline trained in pairs
-* Siamese Architecture
-* Scoring-based, no regressor
-
-## Approaches
-### Deep similarity Learning
-Learning $f(z,x)$, where
-$\begin{cases}
-  z, \text{examplar}
-\\
-  x, \text{candidate}
-\end{cases}$<br>
-SiamFC: $f(z,x)=\varphi(z)\star\varphi(x)+b\cdot\mathbb{1}$ (cross-correlation)
-#### Siamese fashion
-embedding(ConvNet) + metrics(cross-correlation) => score map D<br>
-Peak in the score map => u<br>
-Diplacement = k*||u-c||<br>
-
-### Training
-Retrieving pairs from dataset: examplar image & search image (both centered)<br>
-Image extended with the mean of color per channel (RGB)<br>
-Positive examples: distance within R <br>
-Negative examples: distance surpassing R<br>
-
 # High Performance Visual Tracking with Siamese Region Proposal Networks
 SiamRPN
 ## Keypoints
@@ -83,8 +55,9 @@ DaSiamRPN
 ### NMS selecting Distractor
 * Distractor set:
 $D : = \{\forall d _ { i } \in D , f ( z , d _ { i } ) > h \cap d _ { i } \neq z _ { t } \}$
-* Objective in consideration of distractors:
-$q _ { T + 1 } = \underset { p _ { k } \in \mathcal { P } } { \operatorname { argmax } } \left( \frac { \sum _ { t = 1 } ^ { T } \beta _ { t } \varphi \left( z _ { t } \right) } { \sum _ { t = 1 } ^ { T } \beta _ { t } } - \frac { \sum _ { t = 1 } ^ { T } \beta _ { t } \hat { \alpha } \sum _ { i = 1 } ^ { n } \alpha _ { i } \varphi \left( d _ { i , t } \right) } { \sum _ { t = 1 } ^ { T } \beta _ { t } \sum _ { i = 1 } ^ { n } \alpha _ { i } } \right) \star \varphi \left( p _ { k } \right)$
+<!-- * Objective in consideration of distractors:<br> -->
+Original version: $q = \underset { p _ { k } \in \mathcal { P } } { \operatorname { argmax } } f \left( z , p _ { k } \right) - \frac { \hat { \alpha } \sum _ { i = 1 } ^ { n } \alpha _ { i } f \left( d _ { i } , p _ { k } \right) } { \sum _ { i = 1 } ^ { n } \alpha _ { i } }$<br>
+Final version: $q _ { T + 1 } = \underset { p _ { k } \in \mathcal { P } } { \operatorname { argmax } } \left( \frac { \sum _ { t = 1 } ^ { T } \beta _ { t } \varphi \left( z _ { t } \right) } { \sum _ { t = 1 } ^ { T } \beta _ { t } } - \frac { \sum _ { t = 1 } ^ { T } \beta _ { t } \hat { \alpha } \sum _ { i = 1 } ^ { n } \alpha _ { i } \varphi \left( d _ { i , t } \right) } { \sum _ { t = 1 } ^ { T } \beta _ { t } \sum _ { i = 1 } ^ { n } \alpha _ { i } } \right) \star \varphi \left( p _ { k } \right)$
   * weighted by distractor $\alpha$, sparsely regularized
     * Constant value (=1) according to the author's setting
   * weighted by time $\beta$
@@ -93,3 +66,18 @@ $q _ { T + 1 } = \underset { p _ { k } \in \mathcal { P } } { \operatorname { ar
 ### Local-to-global
 * Detection score indicate the objectness
 * Search region increase step by step
+
+# SiamRPN++: Evolution of Siamese Visual Tracking with Very Deep NEtwoorks
+SiamRPN++
+## Keypoints
+* Effect of violation of strict translation invariance
+* Introduction of ResNet by sampling strategy
+* Layer wise feature aggregation structure (multiple layer features)
+* Depthwise correlation structure
+
+
+## Analysis
+### Padding restrictions
+* Strict translation restrictions for backbone
+* Strong spatial bias towards central point on the feature map if backbone with Padding
+* Random translation (spatial aware sampling) in the data aug alleviate this bias

@@ -3,8 +3,8 @@
   * Success plot: precision w.r.t. IoU
   * Precision plot: precision w.r.t. location error (euclidean dist. btw center location)
 * Metrics based on plot
-  * OP: mean overlap precision
-  * DP: mean distance precision
+  * OP: mean overlap precision, precision w.r.t. IoU
+  * DP: mean distance precision, precision w.r.t. distance (center location error)
 * Overlap score/measure: IoU btw g.t. and predicted
 * AOS: average overlap score
 * AUC: area of success rate w.r.t. thres. of IoU
