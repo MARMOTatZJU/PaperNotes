@@ -44,3 +44,20 @@ Nota: patch: HxWxC, feature map
 * Similarity: $\mathcal { V }=f ( z , x ) = \phi ( z ) * \phi ( x ) + b$
 * Probability: $\operatorname { prob } \left( v p _ { i } , v n _ { j } \right) = \frac { e ^ { v p _ { i } } } { e ^ { v p _ { i } } + e ^ { v n _ { j } } }$
 * Triplet loss: $L _ { t } \left( \mathcal { V } _ { p } , \mathcal { V } _ { n } \right) = - \frac { 1 } { M N } \sum _ { i } ^ { M } \sum _ { j } ^ { N } \log p r o b \left( v p _ { i } , v n _ { j } \right)$
+
+# ATOM: Accurate Tracking by Overlap Maximization
+ATOM
+## Keypoitns
+* IoU prediction module trained offline
+* Classification module trained online
+
+## Comments
+More computational complexity (online update) and lower performance on VOT2018 than SiamRPN++
+
+
+# End-to-end representation learning for Correlation Filter based Tracking
+SiamFC + CF
+
+## Keypoints
+* SiamCF, CF
+* Interpretation of CF learner

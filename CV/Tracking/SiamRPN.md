@@ -75,9 +75,30 @@ SiamRPN++
 * Layer wise feature aggregation structure (multiple layer features)
 * Depthwise correlation structure
 
-
 ## Analysis
 ### Padding restrictions
 * Strict translation restrictions for backbone
 * Strong spatial bias towards central point on the feature map if backbone with Padding
 * Random translation (spatial aware sampling) in the data aug alleviate this bias
+
+# Siamese Cascaded Region Proposal Networks for Real-Time Visual Tracking
+C-RPN
+## Keypoints
+* Cascaded RPN
+  * Feature Transfering Block (FTB)
+* Explore low-level spatial features (feature-pyramid like)
+* Multiple level regression, better precision
+
+## Approaches
+* Cascades:
+$\begin{aligned} \Phi _ { l } ( \mathbf { z } ) & = \mathrm { FTB } \left( \Phi _ { l - 1 } ( \mathbf { z } ) , \varphi _ { l } ( \mathbf { z } ) \right) \\ \Phi _ { l } ( \mathbf { x } ) & = \operatorname { FTB } \left( \Phi _ { l - 1 } ( \mathbf { x } ) , \varphi _ { l } ( \mathbf { x } ) \right) \end{aligned}$<br>
+with $\begin{cases}
+\Phi _ { l }: \text{fused features}
+\\
+\varphi _ { l }: \text{feature from siamese net}
+\end{cases}$
+* Multiple stage classifiers & regressors (Faster-RCNN type)
+* FTB: fuse feature of multiple-levels (like feature pyramid, bottom-up/top-down)
+  * Deconv. the fm from former state for spatial dimension alignement with fm from siamese net
+  * Elem-add
+  * Interp. fused feature map to unify the spatial resolution (for RPN)
