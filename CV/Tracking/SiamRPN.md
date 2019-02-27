@@ -81,6 +81,14 @@ SiamRPN++
 * Strong spatial bias towards central point on the feature map if backbone with Padding
 * Random translation (spatial aware sampling) in the data aug alleviate this bias
 
+## Approaches
+* Translation data augmentation
+* Depthwise correlation
+* Layer-wise aggregation
+  * Same spatial resolution
+  * At the level of cls/reg outputs
+* Finetuning of the backbone
+
 # Siamese Cascaded Region Proposal Networks for Real-Time Visual Tracking
 C-RPN
 ## Keypoints

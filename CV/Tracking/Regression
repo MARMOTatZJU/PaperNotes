@@ -1,0 +1,8 @@
+# Learning to Track at 100 FPS with Deep Regression Networks
+Regression net
+## Keypoints
+* Regression with FC
+
+## Approaches
+* Gaussian distribution for translation aug.
+* Concatenation of visual feature fed to series of FC for regression
