@@ -61,3 +61,17 @@ SiamFC + CF
 ## Keypoints
 * SiamCF, CF
 * Interpretation of CF learner
+
+## Approach
+* CF added on the examplar image $x$<br>
+$h _ { \rho , s , b } \left( x ^ { \prime } , z ^ { \prime } \right) = s \omega \left( f _ { \rho } \left( x ^ { \prime } \right) \right) \star f _ { \rho } \left( z ^ { \prime } \right) + b$
+* Closed form solution: <br>
+$\left\{ \begin{aligned} k & = \frac { 1 } { n } ( x \star x ) + \lambda \delta \\ k * \alpha & = \frac { 1 } { n } y \\ w & = \alpha \star x \end{aligned} \right . \Rightarrow \left\{ \begin{array} { l } { \hat { k } = \frac { 1 } { n } \left( \widehat { x } ^ { * } \circ \widehat { x } \right) + \lambda \mathbb { 1 } } \\ { \widehat { \alpha } = \frac { 1 } { n } \widehat { k } ^ { - 1 } \circ \widehat { y } } \\ { \widehat { w } = \widehat { \alpha } ^ { * } \circ \widehat { x } } \end{array} \right.$
+* Differentiable: <br>
+Results in Fourier domain:<br>
+$\left\{\begin{aligned}
+\widehat { \nabla _ { \alpha } \ell } &= \widehat { x } \circ \left( \widehat { \nabla _ { w } \ell } \right) ^ { * } \\
+\widehat { \nabla _ { y } \ell } &= \frac { 1 } { n } \widehat { k } ^ { - * } \circ \widehat { \nabla _ { \alpha } \ell } \\
+\widehat { \nabla _ { k } \ell } &= - \widehat { k } ^ { - * } \circ \widehat { \alpha } ^ { * } \circ \widehat { \nabla _ { \alpha } \ell } \\
+\widetilde { \nabla _ { x } \ell } &= \widehat { \alpha } \circ \widehat { \nabla _ { w } \ell } + \frac { 2 } { n } \widehat { x } \circ \operatorname { Re } \left\{ \widehat { \nabla _ { k } \ell } \right\}
+\end{aligned} \right.$
