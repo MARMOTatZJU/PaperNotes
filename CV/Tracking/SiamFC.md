@@ -75,3 +75,32 @@ $\left\{\begin{aligned}
 \widehat { \nabla _ { k } \ell } &= - \widehat { k } ^ { - * } \circ \widehat { \alpha } ^ { * } \circ \widehat { \nabla _ { \alpha } \ell } \\
 \widetilde { \nabla _ { x } \ell } &= \widehat { \alpha } \circ \widehat { \nabla _ { w } \ell } + \frac { 2 } { n } \widehat { x } \circ \operatorname { Re } \left\{ \widehat { \nabla _ { k } \ell } \right\}
 \end{aligned} \right.$
+
+# A Towfold SIamese Network for Real-Time Object Tracking
+SA-Siam
+## Keypoints
+* Semantic branch / apperance branch
+* Channel attention from target activation on the semantic branch
+
+## Approaches
+* Heterogenous branches
+  * Apperance branch: similarity learning:
+  $h_{a}(z, X)=\operatorname{corr}\left(f_{a}(z), f_{a}(X)\right)$
+  * Semantic branch: using backbone trained via image classification problem:
+  $h_{s}\left(z^{s}, X\right)=\operatorname{corr}\left(g\left(\xi \cdot f_{s}(z)\right), g\left(f_{s}(X)\right)\right)$
+* attention
+  * Channel weights $\xi$ calculated via target heatmap
+* Score map aggregation at test time: $h\left(z^{s}, X\right)=\lambda h_{a}(z, X)+(1-\lambda) h_{s}\left(z^{s}, X\right)$
+  * Grid division(3x3) + Maxpool(grid-wise) + MPL (9 neurons)
+
+# Towards a Better Match in Siamese Network Based Visual Object Tracker
+## Keypoints
+* Scale&rotation
+* Candidate patch
+
+## Approaches
+* Rotated candidate search patch
+  * Only change one property per frame
+* Spatial mask for extreme aspect ratio
+  * Exclude background influence
+* Moving average upadate template
