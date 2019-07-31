@@ -17,3 +17,10 @@ Localize grid point via heat maps
 * Highest response as grid point
 * Boundaries calculated confidence weighted avg of grid points on the edge
 * Extended region mapping to overcome grid point coverage problem
+
+# Single-Shot Refinement Neural Network for Object Detection
+## Keypoints
+* combine one-stage & two-stage
+  * anchor refinement module
+  * object detection module
+* 

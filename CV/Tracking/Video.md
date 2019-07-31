@@ -23,3 +23,25 @@
       - Normal supervision
 
     - Alignement objective: $l_{\theta}\left(x_{*}^{p}, \hat{x}_{t}^{p}\right)=\frac{1}{n} \sum_{i=1}^{n}\left\|M\left(\theta_{x_{*}^{p}}\right)_{i}-M\left(\theta_{\hat{x}_{t}^{p}}\right)_{i}\right\|_{2}^{2}$
+
+# Flow-Guided Feature Aggregation for Video Object Detection
+FGFA, Optic flow for feature aggregation
+## Keypoints
+* Aggregate features in nearby frames
+  * FlowNet(optic flow) for feature Alignement
+  * Similarity embedding to weight in spatial dimensions
+
+
+## Approaches
+* Detection task decomposition:
+  $\begin{aligned}
+  f&=\mathcal{N}_{\text { feat }}(I)
+  \\
+  y&=\mathcal{N}_{\mathrm{det}}(f)
+  \end{aligned}$
+* FlowNet(optic flow):
+  $f_{j \rightarrow i}=\mathcal{W}\left(f_{j}, \mathbf{M}_{i \rightarrow j}\right)=\mathcal{W}\left(f_{j}, \mathcal{F}\left(I_{i}, I_{j}\right)\right)$
+* Featture aggregation:
+  $\overline{f}_{i}=\sum_{j=i-K}^{i+K} w_{j \rightarrow i} f_{j \rightarrow i}$
+* Similarity embedding:
+  $w_{j \rightarrow i}(p)=\exp \left(\frac{f_{j \rightarrow i}^{e}(p) \cdot f_{i}^{e}(p)}{\left|f_{j \rightarrow i}^{e}(p) \| f_{i}^{e}(p)\right|}\right)$

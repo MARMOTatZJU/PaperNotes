@@ -49,7 +49,7 @@ DaSiamRPN
 * Diverse cat. of pos. pairs favorable for generalization:
 
 ## Approaches
-### Training pair selection
+### Training pair selection （neg pair
 * Positive pairs generated from detection sets through data augmentation
 * Negative pairs from semantic background (same/different category)
 ### NMS selecting Distractor
@@ -110,3 +110,15 @@ with $\begin{cases}
   * Deconv. the fm from former state for spatial dimension alignement with fm from siamese net
   * Elem-add
   * Interp. fused feature map to unify the spatial resolution (for RPN)
+
+# SPM-Tracker: Series-Parallel Matching for Real-Time Visual Object Tracking
+## Keypoints
+* Robustness for Coarse Matching
+* Discrimination for Fine Matching
+
+## Approaches
+* CM
+  * 
+* FM
+  * ROI align to crop feature
+  * Relation network for fine match
