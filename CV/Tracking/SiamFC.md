@@ -31,7 +31,7 @@ Negative examples: distance surpassing R<br>
 
 # Triplet Loss in Siamese Network for Object Tracking
 ## Keypoints
-* Introduce Triplet Loss to  
+* Introduce Triplet Loss to
   * Consideration of triplet relation: examplar / positive instance / negative instance
   * More training pairs
     * Exemplar-instance => Examplar-Positive instance-Negative instance
@@ -56,15 +56,19 @@ More computational complexity (online update) and lower performance on VOT2018 t
 
 
 # End-to-end representation learning for Correlation Filter based Tracking
-SiamFC + CF
-
+CFNet, SiamFC + CF
 ## Keypoints
-* SiamCF, CF
-* Interpretation of CF learner
+* Offline(CNN) + Online(CF)
+* CF -> differentiable
 
 ## Approach
-* CF added on the examplar image $x$<br>
-$h _ { \rho , s , b } \left( x ^ { \prime } , z ^ { \prime } \right) = s \omega \left( f _ { \rho } \left( x ^ { \prime } \right) \right) \star f _ { \rho } \left( z ^ { \prime } \right) + b$
+* Online tracking: simply evaluating the network in forward-mode
+  * compute a new template in each frame and then
+  * EMA for template upadating
+  * no history stored, all computed simutanously
+* Pipeline: $h _ { \rho , s , b } \left( x ^ { \prime } , z ^ { \prime } \right) = s \omega \left( f _ { \rho } \left( x ^ { \prime } \right) \right) \star f _ { \rho } \left( z ^ { \prime } \right) + b$
+  * $\omega$: correlation filter (CF block)
+  * larger input for CF block
 * Closed form solution: <br>
 $\left\{ \begin{aligned} k & = \frac { 1 } { n } ( x \star x ) + \lambda \delta \\ k * \alpha & = \frac { 1 } { n } y \\ w & = \alpha \star x \end{aligned} \right . \Rightarrow \left\{ \begin{array} { l } { \hat { k } = \frac { 1 } { n } \left( \widehat { x } ^ { * } \circ \widehat { x } \right) + \lambda \mathbb { 1 } } \\ { \widehat { \alpha } = \frac { 1 } { n } \widehat { k } ^ { - 1 } \circ \widehat { y } } \\ { \widehat { w } = \widehat { \alpha } ^ { * } \circ \widehat { x } } \end{array} \right.$
 * Differentiable: <br>
@@ -75,6 +79,9 @@ $\left\{\begin{aligned}
 \widehat { \nabla _ { k } \ell } &= - \widehat { k } ^ { - * } \circ \widehat { \alpha } ^ { * } \circ \widehat { \nabla _ { \alpha } \ell } \\
 \widetilde { \nabla _ { x } \ell } &= \widehat { \alpha } \circ \widehat { \nabla _ { w } \ell } + \frac { 2 } { n } \widehat { x } \circ \operatorname { Re } \left\{ \widehat { \nabla _ { k } \ell } \right\}
 \end{aligned} \right.$
+# Reduction of cicular boundaries
+* cosine window
+* cropping
 
 # A Towfold SIamese Network for Real-Time Object Tracking
 SA-Siam

@@ -16,6 +16,7 @@
 |Word|Example|
 |:---:|:---:|
 |Descent|Given a decent K-shot N-way classifier|
+|Jusidiously|judiciously reducing dimension|
 
 ## 概念
 |Word|Example|
@@ -23,5 +24,9 @@
 | 堆了两个组件不涨点 | not complementary |
 
 
+
 ## Expression
 In detail
+focus on A over B
+inducing a significant speed penalty
+albeit
